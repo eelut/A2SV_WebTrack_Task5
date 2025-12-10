@@ -1,6 +1,5 @@
 import "../styles/ContactForm.css";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 
 type FormValues = {
@@ -11,7 +10,7 @@ type FormValues = {
 
 const ContactForm = () => {
   const form = useForm<FormValues>();
-  const { register, control, handleSubmit, formState ,reset} = form;
+  const { register,handleSubmit, formState ,reset} = form;
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   useEffect(() => {
@@ -85,7 +84,6 @@ const ContactForm = () => {
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
             </form>
-            <DevTool control={control} />
           </div>
         </div>
       </section>
