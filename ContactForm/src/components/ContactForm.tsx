@@ -1,18 +1,19 @@
 import "../styles/ContactForm.css";
-import {useForm} from 'react-hook-form';
-import {DevTool} from '@hookform/devtools';
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
-type FormValues={
-  name:string;
-  email:string;
-  message:string;
-}
+type FormValues = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 const ContactForm = () => {
-  const form=useForm<FormValues>();
-  const{register,control,handleSubmit}=form;
-  const onSubmit=(data:FormValues)=>{
-    console.log("Form Submitted",data);
+  const form = useForm<FormValues>();
+  const { register, control, handleSubmit, formState } = form;
+  const { errors } = formState;
+  const onSubmit = (data: FormValues) => {
+    console.log("Form Submitted", data);
   };
 
   return (
@@ -26,33 +27,52 @@ const ContactForm = () => {
             respond as soon as possible
           </p>
           <div className="formCard">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter your name"
-              {...register('name')}
-            />
-            
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              {...register('email')}
-
-            />
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              placeholder="Enter your message"
-              {...register('message')}
-              rows={5}
-            />
-            <button type="submit" className="submitBtn">Submit</button>
-          </form>
-          <DevTool control={control}/>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="formControl">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter your name"
+                  {...register("name", {
+                    required: { value: true, message: "Name is required" },
+                  })}
+                />
+                <p className="error">{errors.name?.message}</p>
+              </div>
+              <div className="formControl">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  {...register("email", {
+                    required: { value: true, message: "Email is required" },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                />
+                <p className="error">{errors.email?.message}</p>
+              </div>
+              <div className="formControl">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  placeholder="Enter your message"
+                  {...register("message", {
+                    required: { value: true, message: "Message is required" },
+                  })}
+                  rows={5}
+                />
+                <p className="error">{errors.message?.message}</p>
+              </div>
+              <button type="submit" className="submitBtn">
+                Submit
+              </button>
+            </form>
+            <DevTool control={control} />
           </div>
         </div>
       </section>
