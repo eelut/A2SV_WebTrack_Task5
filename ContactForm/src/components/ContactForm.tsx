@@ -1,6 +1,7 @@
 import "../styles/ContactForm.css";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { useEffect } from "react";
 
 type FormValues = {
   name: string;
@@ -10,9 +11,17 @@ type FormValues = {
 
 const ContactForm = () => {
   const form = useForm<FormValues>();
-  const { register, control, handleSubmit, formState } = form;
-  const { errors } = formState;
-  const onSubmit = (data: FormValues) => {
+  const { register, control, handleSubmit, formState ,reset} = form;
+  const { errors, isSubmitting, isSubmitSuccessful } = formState;
+
+  useEffect(() => {
+  if (isSubmitSuccessful) {
+    reset();
+  }
+}, [isSubmitSuccessful, reset]);
+
+  const onSubmit = async (data: FormValues) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log("Form Submitted", data);
   };
 
@@ -68,8 +77,12 @@ const ContactForm = () => {
                 />
                 <p className="error">{errors.message?.message}</p>
               </div>
-              <button type="submit" className="submitBtn">
-                Submit
+              <button
+                type="submit"
+                className="submitBtn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "Submit"}
               </button>
             </form>
             <DevTool control={control} />
