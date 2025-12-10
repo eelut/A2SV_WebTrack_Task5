@@ -1,0 +1,129 @@
+:root {
+  --primaryBackground: #0a0f1f;
+  --secondaryBackground: #0c1222;
+  --secondaryColor: #d1d1d1;
+  --borderColor: #2a3148;
+  --inputBackground: #0b1222;
+  --inputColor: #dcdcdc;
+  --inputFocusedBorder: #339bff;
+  --buttonBackground: #339bff;
+  --buttonHover: #007bff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--primaryBackground);
+  color: white;
+  overflow: hidden;
+}
+
+.contactSection {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 36px 20px;
+}
+
+.glow {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 102, 255, 0.45) 0%,
+    transparent 70%
+  );
+  filter: blur(120px);
+  z-index: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  text-align: center;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: var(--secondaryColor);
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.formCard {
+  background: var(--secondaryBackground);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 20px 40px;
+  max-width: 550px;
+  margin: 0 auto;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1fr, 2fr));
+  gap: 25px;
+}
+
+input ,textarea{
+  width: 100%;
+  padding: 16px ;
+  font-size: 14px;
+  border-radius: 12px;
+  outline: none;
+  border: 1px solid #2d344a;
+  background: var(--inputBackground);
+  color: var(--inputColor);
+  transition: 0.2s;
+  margin-top: -10px;
+}
+
+input:focus , textarea:focus{
+  border-color: var(--inputFocusedBorder);
+}
+
+label{
+  font-size: 14px;
+  color: #7b86a1;
+  letter-spacing: 0.5px;
+  text-align: left;
+    margin-bottom: -10px;
+}
+
+.submitBtn {
+  grid-column: 1/-1;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  background: var(--buttonBackground);
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 12px;
+  color: white;
+  transition: 0.3s;
+  box-shadow: 0px 4px 25px rgba(0, 140, 255, 0.4);
+}
+
+.submitBtn:hover {
+  background: var(--buttonHover);
+  filter: brightness(1.05);
+}
+
