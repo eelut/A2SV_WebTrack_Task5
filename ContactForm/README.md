@@ -33,9 +33,9 @@ A simple and responsive **Contact Form built with React and TypeScript** using `
 
 
 
-![Contact Form Screenshot](.src/images/Screenshot1.png)
-![Contact Form Screenshot2](.src/images/Screenshot2.png)
-![Contact Form Screenshot3](.src/images/Screenshot3.png)
+![Contact Form Screenshot](src/images/Screenshot1.png)
+![Contact Form Screenshot2](src/images/Screenshot2.png)
+![Contact Form Screenshot3](src/images/Screenshot3.png)
 
 
 ---
